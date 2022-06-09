@@ -22,7 +22,7 @@ public class CustUserDetailsService implements UserDetailsService {
         return userInfoService.getByUsername(username)
                 .map(e -> User.withUsername(e.getUsername())
                         .password("{noop}" + e.getPassword())
-                        .roles(e.getRole())
+                        .roles(e.getRole().split(","))
                         .build()).orElse(null);
     }
 

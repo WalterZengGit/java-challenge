@@ -12,7 +12,9 @@ spring:
       settings:
         trace: false
         web-allow-others: false
-
+  datasource:
+    initialization-mode: always
+    data: classpath:fakeData.sql
   #Spring DataSource configuration
   jpa:
     hibernate:
@@ -21,3 +23,7 @@ spring:
       hibernate:
         show_sql: true
         format_sql: true
+        
+logging:
+  level:
+    jp.co.axa.apidemo: DEBUG

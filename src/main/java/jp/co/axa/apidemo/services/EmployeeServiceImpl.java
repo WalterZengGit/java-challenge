@@ -3,8 +3,6 @@ package jp.co.axa.apidemo.services;
 import java.util.List;
 import java.util.Optional;
 
-import javax.annotation.PostConstruct;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.CachePut;
@@ -20,25 +18,6 @@ public class EmployeeServiceImpl implements EmployeeService {
 	@Autowired
 	private EmployeeRepository employeeRepository;
 	
-	/**
-	 * fake data for local test
-	 */
-	@PostConstruct
-	void init() {
-		List<Employee> employeeList = List.of(
-				Employee.builder()
-						.id(Long.valueOf(1))
-						.name("HR1")
-						.salary(100000)
-						.department("ADMIN").build(),
-				Employee.builder()
-						.id(Long.valueOf(2))
-						.name("Tech11")
-						.salary(72333)
-						.department("TECH").build());
-		employeeRepository.saveAll(employeeList);
-	}
-
     @Cacheable(cacheNames = "employees")
 	public List<Employee> retrieveEmployees() {
 		List<Employee> employees = employeeRepository.findAll();
