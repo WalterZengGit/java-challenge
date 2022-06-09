@@ -17,20 +17,17 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder
 @Entity
-@Table(name = "EMPLOYEE")
-public class Employee {
-
+@Table(name = "USERINFO")
+public class UserInfo {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-
-	@Column(name = "EMPLOYEE_NAME")
-	private String name;
-
-	@Column(name = "EMPLOYEE_SALARY")
-	private Integer salary;
-
-	@Column(name = "DEPARTMENT")
-	private String department;
-
+	
+	@Column(unique = true)
+	private String username;
+	
+	private String password;
+	
+	private String role;
 }
